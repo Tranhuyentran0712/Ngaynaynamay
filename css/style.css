@@ -1,0 +1,117 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f3de;
+  color: #4b2c20;
+}
+.navbar {
+  background-color: #b62616;
+}
+.navbar-brand {
+  font-family: "Bungee", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #ffd034;
+}
+
+.nav-link {
+  color: #ffd034 !important;
+}
+.collapse {
+  font-family: "Baloo Paaji 2", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+.hero {
+  background: url("../ảnh/background.png") center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 150px 20px;
+  text-shadow: 2px 2px 4px #000000;
+}
+.hero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: "Protest Strike", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.hero p {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  border: #4b2c20 1px solid;
+  background-color: #fdf2cd;
+}
+.card-img-top {
+  width: 422px;
+  height: 263px;
+}
+.events-section {
+  padding: 50px 0;
+}
+.events-section h2 {
+  font-family: "Protest Strike", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff8dc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: "Protest Strike", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.register-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff8dc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.register-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: "Protest Strike", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.collection h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: "Protest Strike", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.event-card {
+  border: #4b2805 solid 2px;
+  padding: 10px;
+  border-radius: 15px;
+}
+footer {
+  background-color: #4b2805;
+  color: white;
+  padding: 15px 0;
+  text-align: center;
+  margin-top: 150px;
+}
+.bst {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ngày Này Năm Ấy</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Allura&family=Amatic+SC:wght@400;700&family=Baloo+Paaji+2:wght@400..800&family=Bungee&family=Dancing+Script:wght@400..700&family=Great+Vibes&family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&family=Paytone+One&family=Protest+Strike&family=Smooch&display=swap"
+      rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/index.html">Ngày này năm ấy</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">Trang chủ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./bosuutap.html">Bộ sưu tập</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./dangnhap.html">Đăng nhập</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Khám Phá Quá Khứ - Truy Tìm Lịch Sử</h1>
+      <p>Cùng nhìn lại những sự kiện lịch sử đáng nhớ của Việt Nam</p>
+
+      <div class="container mt-4">
+        <div class="row justify-content-center">
+          <div class="col-md-6 col-lg-5 d-flex gap-2">
+            <input
+              type="text"
+              id="dateInput"
+              class="form-control"
+              placeholder="dd/mm/yyyy" />
+            <button class="btn btn-danger" id="searchBtn">Tìm kiếm</button>
+          </div>
+        </div>
+
+        <div id="eventResult" class="mt-4 text-start"></div>
+      </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events-section container text-center">
+      <h2 class="mb-4">Sự Kiện Nổi Bật</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <img
+              src="./ảnh/16518946847629.jpeg"
+              class="card-img-top"
+              alt="điện biên phủ" />
+            <div class="card-body">
+              <h5 class="card-title">Chiến thắng Điện Biên Phủ</h5>
+              <p class="card-text">Thời gian: 07/05/1954</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img
+              src="./ảnh/photo-1714290103895-17142901040591609258739.webp"
+              class="card-img-top"
+              alt="đại thắng mùa xuân" />
+            <div class="card-body">
+              <h5 class="card-title">Đại thắng Mùa Xuân</h5>
+              <p class="card-text">Thời gian: 30/04/1975</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img
+              src="./ảnh/thumb-660-c015e21f-e533-4c50-bf68-63fcc9b7ff61-1690883063.jpg"
+              class="card-img-top"
+              alt="tết mậu thân" />
+            <div class="card-body">
+              <h5 class="card-title">Chiến dịch Tết Mậu Thân</h5>
+              <p class="card-text">Thời gian: 1968</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Ngày này năm ấy. All rights reserved.</p>
+    </footer>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
+
+    <!-- Firebase Auth -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.13.1/firebase-auth-compat.min.js"
+      integrity="sha512-b2PGOE6ClpdFR5WZylPqJ9NEtHyGtdXKIe5wI0qRKVg3VeH9Km8CvihpnySwf6v21TV2cMTUp/BuglUiFLB38Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <script src="./js/firebase-config.js"></script>
+
+    <script src="./js/main.js"></script>
+  </body>
+</html>
