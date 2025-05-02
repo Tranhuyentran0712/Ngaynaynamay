@@ -10,7 +10,6 @@ function searchEvent() {
   const resultDiv = document.getElementById("eventResult");
   resultDiv.innerHTML = "<p>Đang tìm kiếm sự kiện...</p>";
 
-  // Kiểm tra định dạng dd/mm/yyyy
   const regex = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
   const match = input.match(regex);
 
@@ -28,8 +27,6 @@ function searchEvent() {
     .then((res) => res.json())
     .then((data) => {
       const events = data.events;
-
-      // Lọc các sự kiện có liên quan đến Việt Nam (có thể viết tiếng Việt hoặc Vietnam)
       const vnEvents = events.filter(
         (event) =>
           event.text.toLowerCase().includes("việt nam") ||
@@ -41,16 +38,48 @@ function searchEvent() {
         return;
       }
 
-      resultDiv.innerHTML = `<h5 class="mb-3">Sự kiện đã diễn ra vào ngày ${input} là :</h5>`;
+      resultDiv.innerHTML = `<h5 class="mb-3">Sự kiện đã diễn ra vào ngày ${day}/${month}:</h5>`;
       vnEvents.forEach((event) => {
-        resultDiv.innerHTML += `
-          <div class="border-start border-3 border-danger ps-3 mb-3">
-            <strong>${event.year}</strong>: ${event.text}
-          </div>`;
+        const eventHTML = `
+            <div class="border-start border-3 border-danger ps-3 mb-3">
+              <strong>${event.year}</strong>: ${event.text}
+              <br>
+              <button class="btn btn-sm btn-outline-danger mt-2" onclick='addToFavorites(${JSON.stringify(
+                {
+                  year: event.year,
+                  text: event.text,
+                }
+              )})'> Thêm vào yêu thích</button>
+            </div>`;
+        resultDiv.innerHTML += eventHTML;
       });
     })
     .catch((error) => {
       console.error(error);
       resultDiv.innerHTML = `<p class="text-danger">Lỗi khi lấy dữ liệu từ Wikipedia.</p>`;
+    });
+}
+
+// Hàm lưu vào Firestore
+function addToFavorites(eventData) {
+  const user = firebase.auth().currentUser;
+  if (!user) {
+    alert("Vui lòng đăng nhập để sử dụng chức năng này.");
+    return;
+  }
+
+  db.collection("favorites")
+    .add({
+      uid: user.uid,
+      year: eventData.year,
+      text: eventData.text,
+      addedAt: new Date(),
+    })
+    .then(() => {
+      alert("Đã thêm vào bộ sưu tập yêu thích!");
+    })
+    .catch((error) => {
+      console.error("Lỗi khi thêm vào yêu thích:", error);
+      alert("Lưu thất bại. Vui lòng thử lại.");
     });
 }
