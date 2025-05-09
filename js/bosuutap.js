@@ -1,38 +1,49 @@
-document.addEventListener("DOMContentLoaded", function () {
-  let favoriteEvents = [
-    {
-      title: "Chiến thắng Điện Biên Phủ",
-      date: "07/05/1954",
-      img: "dienbienphu.jpg",
-      desc: "Trận chiến lịch sử của Việt Nam chống thực dân Pháp.",
-    },
-    {
-      title: "Cách mạng tháng 8",
-      date: "19/08/1945",
-      img: "cachmangthang8.jpg",
-      desc: "Cuộc khởi nghĩa giành độc lập cho dân tộc Việt Nam.",
-    },
-  ];
-
-  let eventContainer = document.getElementById("favorite-events");
-  favoriteEvents.forEach((event) => {
-    let eventHTML = `
-            <div class="col-md-6">
-                <div class="event-card">
-                    <img src="images/${event.img}" class="img-fluid w-100" alt="${event.title}">
-                    <h4 class="mt-2">${event.title}</h4>
-                    <p><strong>Ngày:</strong> ${event.date}</p>
-                    <p>${event.desc}</p>
-                    <button class="btn btn-danger btn-remove" data-title="${event.title}">Xóa khỏi yêu thích</button>
+// Kiểm tra người dùng đăng nhập và lấy dữ liệu yêu thích
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    const uid = user.uid;
+    db.collection("favorites")
+      .where("uid", "==", uid)
+      .get()
+      .then((querySnapshot) => {
+        const container = document.getElementById("favorite-events");
+        if (querySnapshot.empty) {
+          container.innerHTML = "<p>Bạn chưa có sự kiện nào được lưu.</p>";
+          return;
+        }
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const div = document.createElement("div");
+          div.className = "col-md-6";
+          div.innerHTML = `
+                <div class="event-card border p-3 mb-4 shadow-sm">
+                  <h4>${data.text}</h4>
+                  <p><strong>Năm:</strong> ${data.year}</p>
+                  <button class="btn btn-danger btn-sm" onclick="deleteFavorite('${doc.id}')">Xóa khỏi yêu thích</button>
                 </div>
-            </div>
-        `;
-    eventContainer.innerHTML += eventHTML;
-  });
-
-  document.querySelectorAll(".btn-remove").forEach((button) => {
-    button.addEventListener("click", function () {
-      alert("Xóa sự kiện: " + this.getAttribute("data-title"));
-    });
-  });
+              `;
+          container.appendChild(div);
+        });
+      })
+      .catch((err) => {
+        console.error("Lỗi khi lấy dữ liệu:", err);
+      });
+  } else {
+    document.getElementById("favorite-events").innerHTML =
+      "<p>Vui lòng đăng nhập để xem bộ sưu tập.</p>";
+  }
 });
+
+function deleteFavorite(docId) {
+  db.collection("favorites")
+    .doc(docId)
+    .delete()
+    .then(() => {
+      alert("Đã xóa sự kiện khỏi yêu thích.");
+      location.reload();
+    })
+    .catch((err) => {
+      console.error("Lỗi khi xóa:", err);
+      alert("Không thể xóa sự kiện.");
+    });
+}
