@@ -23,7 +23,7 @@ body {
   font-style: normal;
 }
 .hero {
-  background: url("../ảnh/background.png") center/cover no-repeat;
+  background: url("../img/background.png") center/cover no-repeat;
   color: white;
   text-align: center;
   padding: 150px 20px;
@@ -47,11 +47,11 @@ body {
   background-color: #fdf2cd;
 }
 .card-img-top {
-  width: 422px;
+  width: 413px;
   height: 263px;
 }
 .events-section {
-  padding: 50px 0;
+  padding-bottom: 50px;
 }
 .events-section h2 {
   font-family: "Protest Strike", sans-serif;
@@ -59,6 +59,24 @@ body {
   font-style: normal;
 }
 
+.eventResult {
+  padding: 10px;
+}
+.ps-3 {
+  padding-left: 1rem !important;
+  font-family: "Baloo Paaji 2", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: larger;
+  color: #fad034;
+}
+
+b,
+strong {
+  font-weight: bolder;
+  color: #b62616;
+}
 .login-container {
   max-width: 400px;
   margin: 50px auto;
@@ -67,6 +85,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .login-container h2 {
   text-align: center;
   margin-bottom: 20px;
@@ -108,7 +127,6 @@ footer {
   color: white;
   padding: 15px 0;
   text-align: center;
-  margin-top: 150px;
 }
 .bst {
   position: fixed;

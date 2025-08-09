@@ -26,3 +26,36 @@ document.getElementById("login-form").addEventListener("submit", (event) => {
       alert("Mật khẩu không đúng");
     });
 });
+// const inpEmail = document.getElementById("inp-email-login");
+// const inpPwd = document.getElementById("inp-pwd-login");
+
+// document.getElementById("login-form").addEventListener("submit", (event) => {
+//   event.preventDefault();
+
+//   let email = inpEmail.value.toLowerCase();
+//   let password = inpPwd.value;
+
+//   if (!email || !password) {
+//     alert("Vui lòng điền đủ các trường");
+//     return;
+//   }
+//   firebase
+//     .auth()
+//     .signInWithEmailAndPassword(email, password)
+//     .then((userCredential) => {
+//       var user = userCredential.user;
+//       // Lưu thông tin user trước khi chuyển trang
+//       localStorage.setItem(
+//         "user_session",
+//         JSON.stringify({
+//           email: user.email,
+//           photoURL: user.photoURL, // lấy avatar nếu có
+//         })
+//       );
+//       alert("Đăng nhập thành công");
+//       window.location.href = "index.html";
+//     })
+//     .catch((error) => {
+//       alert("Mật khẩu không đúng");
+//     });
+// });

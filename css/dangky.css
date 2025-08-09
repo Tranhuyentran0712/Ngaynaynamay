@@ -1,0 +1,10 @@
+body {
+  background: url("../img/background.png") center/cover no-repeat;
+}
+
+footer {
+  background-color: #4b2805;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+}

@@ -1,0 +1,19 @@
+body {
+  background: url("../img/background.png") center / cover no-repeat fixed;
+  color: #4b2c20;
+}
+
+.form-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  background-color: #4b2c20;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: 160px;
+}
