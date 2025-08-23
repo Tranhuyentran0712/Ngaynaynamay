@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "event_title": "Chiến thắng Điện Biên Phủ",
+    "event_date": "07/05/1954",
+    "event_content": "Trận Điện Biên Phủ (13/3 ~ 7/5/1954) là chiến dịch quân sự quyết định trong cuộc kháng chiến chống Pháp của nhân dân Việt Nam. Quân đội ta dưới sự chỉ huy của Đại tướng Võ Nguyên Giáp đã áp dụng chiến lược “đánh chắc, tiến chắc”, vây hãm và tiêu diệt tập đoàn cứ điểm mạnh nhất của Pháp ở Điện Biên Phủ. Sau 56 ngày đêm chiến đấu ác liệt, ta đã toàn thắng, bắt sống hơn 16.000 quân địch, buộc Pháp phải ký Hiệp định Genève, chấm dứt chiến tranh ở Đông Dương. Đây là chiến thắng vang dội, mang tầm vóc lịch sử thế giới, đánh dấu sự sụp đổ của chủ nghĩa thực dân cũ.",
+    "event_img": "./img/16518946847629.jpeg"
+  },
+  {
+    "id": 2,
+    "event_title": "Chiến dịch Hồ Chí Minh",
+    "event_date": "30/04/1975",
+    "event_content": "Chiến dịch Hồ Chí Minh là trận quyết chiến chiến lược cuối cùng của quân và dân Việt Nam trong cuộc kháng chiến chống Mỹ, diễn ra từ ngày 26 đến 30/4/1975. Với sự tham gia của năm cánh quân chủ lực, chiến dịch đã tiến công thần tốc, đánh chiếm Sài Gòn và các cơ quan đầu não của chính quyền Sài Gòn. Ngày 30/4/1975, xe tăng quân giải phóng húc đổ cổng Dinh Độc Lập, buộc Tổng thống Dương Văn Minh tuyên bố đầu hàng vô điều kiện. Thắng lợi của chiến dịch Hồ Chí Minh đã chấm dứt hoàn toàn ách thống trị của Mỹ và chính quyền Sài Gòn, giải phóng miền Nam, thống nhất đất nước.",
+    "event_img": "./img/photo-1714290103895-17142901040591609258739.webp"
+  },
+  {
+    "id": 3,
+    "event_title": "Điện Biên Phủ trên không",
+    "event_date": "18/12/1972",
+    "event_content": "Chiến dịch Điện Biên Phủ trên không (18–29/12/1972) là cuộc tập kích chiến lược bằng không quân lớn nhất của Mỹ trong chiến tranh Việt Nam, với mục tiêu dùng B-52 cùng hàng nghìn lượt máy bay đánh phá Hà Nội, Hải Phòng và một số tỉnh miền Bắc nhằm buộc ta chấp nhận điều kiện thương lượng bất lợi tại Hội nghị Paris. Tuy nhiên, quân và dân miền Bắc, đặc biệt là lực lượng phòng không – không quân, đã kiên cường chiến đấu, bắn rơi 81 máy bay các loại, trong đó có 34 chiếc B-52. Thất bại nặng nề này buộc Mỹ phải ký Hiệp định Paris (27/1/1973), rút toàn bộ quân viễn chinh về nước, đánh dấu thắng lợi quyết định của nhân dân Việt Nam trong cuộc kháng chiến chống Mỹ.",
+    "event_img": "./img/ttxvn_dien-bien-phu-tren-khong-1.jpg"
+  }
+]

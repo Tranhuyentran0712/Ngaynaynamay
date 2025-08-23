@@ -5,6 +5,8 @@ body {
 }
 .navbar {
   background-color: #b62616;
+  position: sticky;
+  top: 0;
 }
 .navbar-brand {
   font-family: "Bungee", sans-serif;
@@ -27,10 +29,10 @@ body {
   color: white;
   text-align: center;
   padding: 150px 20px;
-  text-shadow: 2px 2px 4px #000000;
+  text-shadow: 5px 4px 4px #000000;
 }
 .hero h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: bold;
   font-family: "Protest Strike", sans-serif;
   font-weight: 400;
@@ -39,6 +41,9 @@ body {
 .hero p {
   font-size: 1.3rem;
   margin-bottom: 20px;
+}
+searchBtn {
+  color: #ffd034;
 }
 .card {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -121,6 +126,14 @@ strong {
   border: #4b2805 solid 2px;
   padding: 10px;
   border-radius: 15px;
+}
+.col-md-4 {
+  font-family: "Bungee", sans-serif;
+  /* font-weight: 600; */
+  text-decoration: none !important;
+}
+.card-title {
+  color: #b62616;
 }
 footer {
   background-color: #4b2805;

@@ -10,7 +10,7 @@ document.getElementById("register-form").addEventListener("submit", (event) => {
   let email = inpEmail.value.toLowerCase();
   let password = inpPwd.value;
   let confirmPassword = inpConfirmPwd.value;
-  let role_id = 2;
+  let role = "user";
   if (!username || !email || !password || !confirmPassword) {
     alert("Vui lòng điền đủ các trường.");
     return;
@@ -28,7 +28,7 @@ document.getElementById("register-form").addEventListener("submit", (event) => {
         username,
         email,
         password,
-        role_id: role_id,
+        role: role,
       };
 
       db.collection("users")

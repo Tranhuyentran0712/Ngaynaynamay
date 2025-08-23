@@ -13,7 +13,8 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Allura&family=Amatic+SC:wght@400;700&family=Baloo+Paaji+2:wght@400..800&family=Bungee&family=Dancing+Script:wght@400..700&family=Great+Vibes&family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&family=Paytone+One&family=Protest+Strike&family=Smooch&display=swap"
       rel="stylesheet" />
-  </head>
+    <link rel="stylesheet" 
+ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container-fluid">
@@ -34,7 +35,7 @@
               <a class="nav-link" href="./bosuutap.html">Bộ sưu tập</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./dangnhap.html">Đăng nhập</a>
+              <a class="nav-link nav_login_btn" href="./dangnhap.html">Đăng nhập</a>
             </li>
           </ul>
         </div>
@@ -44,11 +45,10 @@
     <!-- Hero Section -->
     <section class="hero">
       <h1>Khám Phá Quá Khứ - Truy Tìm Lịch Sử</h1>
-      <p>Cùng nhìn lại những sự kiện lịch sử đáng nhớ của Việt Nam</p>
 
       <div class="container mt-4">
         <div class="row justify-content-center">
-          <div class="col-md-6 col-lg-5 d-flex gap-2">
+          <div class="col-md-6 col-md-5 d-flex gap-2">
             <input
               type="text"
               id="dateInput"
@@ -57,6 +57,7 @@
             <button class="btn btn-danger" id="searchBtn">Tìm kiếm</button>
           </div>
         </div>
+      </div>
 
         
     </section>
@@ -68,7 +69,7 @@
       <h2 class="mb-4">Sự Kiện Nổi Bật</h2>
       <div class="row">
         <div class="col-md-4">
-          <a class="Documents" href="./dienbienphu.html"><div class="card">
+           <div class="card">
             <img
               src="./img/16518946847629.jpeg"
               class="card-img-top"
@@ -77,31 +78,31 @@
               <h5 class="card-title">Chiến thắng Điện Biên Phủ</h5>
               <p class="card-text">Thời gian: 07/05/1954</p>
             </div>
-          </div></a>
+          </div>
         </div>
         <div class="col-md-4">
-          <a class="Documents" href="./daithangmuaxuan.html"><div class="card">
+          <div class="card">
             <img
               src="./img/photo-1714290103895-17142901040591609258739.webp"
               class="card-img-top"
-              alt="đại thắng mùa xuân" />
+              alt="Chiến dịch HCM" />
             <div class="card-body">
-              <h5 class="card-title">Đại thắng Mùa Xuân</h5>
+              <h5 class="card-title">Chiến dịch Hồ Chí Minh</h5>
               <p class="card-text">Thời gian: 30/04/1975</p>
             </div>
-          </div></a>
+          </div>
         </div>
         <div class="col-md-4">
-          <a class="Documents" href="./tetmauthan.html"><div class="card">
+          <div class="card">
             <img
-              src="./img/thumb-660-c015e21f-e533-4c50-bf68-63fcc9b7ff61-1690883063.jpg"
+              src="./img/ttxvn_dien-bien-phu-tren-khong-1.jpg"
               class="card-img-top"
-              alt="tết mậu thân" />
+              alt="điện biên phủ trên không" />
             <div class="card-body">
-              <h5 class="card-title">Chiến dịch Tết Mậu Thân</h5>
-              <p class="card-text">Thời gian: 1968</p>
+              <h5 class="card-title">Điện Biên Phủ trên không</h5>
+              <p class="card-text">Thời gian: 18/12/1972</p>
             </div>
-          </div></a>
+          </div>
         </div>
       </div>
     </section>
@@ -124,6 +125,7 @@
       referrerpolicy="no-referrer"></script>
     <script src="./js/firebase-config.js"></script>
     <script src="./js/nav.js"></script>
+    <script src="js/event-detail.js"></script>
 
     <script src="./js/main.js"></script>
   </body>

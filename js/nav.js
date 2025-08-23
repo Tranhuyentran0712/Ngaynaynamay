@@ -1,30 +1,18 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//   const loginBtn = document.getElementById("login-btn");
+document.addEventListener("DOMContentLoaded", function () {
+  if (typeof firebase === "undefined" || !firebase.auth) return;
 
-//   firebase.auth().onAuthStateChanged((user) => {
-//     if (user) {
-//       const avatarURL = user.photoURL || "default-avatar.png";
-//       loginBtn.innerHTML = `
-//         <img src="${avatarURL}" alt="Avatar"
-//              style="width:30px;height:30px;border-radius:50%;cursor:pointer;"
-//              onclick="window.location.href='profile.html'">
-//       `;
-//     } else {
-//       loginBtn.innerHTML = `<a href="login.html">Đăng nhập</a>`;
-//     }
-//   });
-// });
-window.addEventListener("DOMContentLoaded", function () {
-  const loginNav = document.getElementById("loginNav");
-  const userSession = localStorage.getItem("user_session");
-  if (loginNav && userSession) {
-    const user = JSON.parse(userSession);
-    loginNav.innerHTML = `
-      <a class="nav-link" href="/profile">
-        <img src="${
-          user.photoURL || "/img/default-avatar.png"
-        }" alt="Avatar" style="width:32px;height:32px;border-radius:50%;">
-      </a>
-    `;
-  }
+  firebase.auth().onAuthStateChanged(function (user) {
+    const loginLink = document.querySelector(".nav_login_btn");
+    if (!loginLink) return;
+
+    if (user) {
+      loginLink.innerHTML = '<i class="fa-solid fa-user"></i>';
+      loginLink.setAttribute("href", "./user.html");
+      loginLink.classList.add("user-icon");
+    } else {
+      loginLink.textContent = "Đăng nhập";
+      loginLink.setAttribute("href", "./dangnhap.html");
+      loginLink.classList.remove("user-icon");
+    }
+  });
 });

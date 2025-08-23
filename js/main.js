@@ -83,3 +83,20 @@ function addToFavorites(eventData) {
       alert("Lưu thất bại. Vui lòng thử lại.");
     });
 }
+// firebase.auth().onAuthStateChanged((user) => {
+//   const loginBtn = document.querySelector(".nav_login_btn");
+
+//   if (loginBtn) {
+//     if (user) {
+//       // Nếu đã đăng nhập -> hiện icon user
+//       loginBtn.innerHTML = '<i class="fas fa-user"></i>';
+//       loginBtn.setAttribute("href", "./user.html");
+//       loginBtn.classList.add("user-icon");
+//     } else {
+//       // Nếu chưa đăng nhập -> hiện chữ Đăng nhập
+//       loginBtn.innerHTML = "Đăng nhập";
+//       loginBtn.setAttribute("href", "./dangnhap.html");
+//       loginBtn.classList.remove("user-icon");
+//     }
+//   }
+// });
