@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   loadEventDetail();
 });
 
-// Hàm load chi tiết sự kiện
-function loadEventDetail() {
+// Hàm load chi tiết sự kiện từ Firebase
+async function loadEventDetail() {
   const params = new URLSearchParams(window.location.search);
   const eventId = params.get("id");
   const detailEl = document.getElementById("event-detail-content");
@@ -20,70 +20,81 @@ function loadEventDetail() {
     return;
   }
 
-  fetch("events.json")
-    .then((res) => {
-      if (!res.ok) throw new Error("Không tải được events.json");
-      return res.json();
-    })
-    .then((events) => {
-      // Tìm sự kiện theo ID
-      const event = events.find((e) => e.id.toString() === eventId);
-      
-      if (!event) {
-        detailEl.innerHTML = `
-          <div class="alert alert-danger" role="alert">
-            <i class="fas fa-times-circle"></i>
-            Không tìm thấy sự kiện có ID: ${eventId}
-          </div>
-        `;
-        return;
-      }
-      
-      // Hiển thị chi tiết sự kiện
+  try {
+    // Tìm sự kiện từ Firestore theo ID
+    const snapshot = await db.collection('events').where('id', '==', parseInt(eventId)).get();
+    
+    if (snapshot.empty) {
       detailEl.innerHTML = `
-        <div class="row">
-          <div class="col-md-8 offset-md-2">
-            <div class="card shadow-lg">
-              <img src="${event.event_img}" class="card-img-top" alt="${event.event_title}" style="height: 400px; object-fit: cover; width: 100%;">
-              <div class="card-body">
-                <h1 class="card-title text-center mb-3">${event.event_title}</h1>
-                <div class="text-center mb-4">
-                  <span class="badge bg-danger fs-6">
-                    <i class="fas fa-calendar-alt"></i> ${event.event_date}
-                  </span>
-                </div>
-                <div class="event-content">
-                  <p class="lead text-justify" style="line-height: 1.8; text-align: justify;">
-                    ${event.event_content}
-                  </p>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  <button class="btn btn-outline-danger" onclick="addToFavorites({
-                    year: '${event.event_date}', 
-                    text: '${event.event_title}: ${event.event_content.substring(0, 100)}...'
-                  })">
-                    <i class="fas fa-heart"></i> Thêm vào yêu thích
-                  </button>
-                  <button class="btn btn-outline-secondary" onclick="shareEvent('${event.event_title}', '${window.location.href}')">
-                    <i class="fas fa-share-alt"></i> Chia sẻ
-                  </button>
-                </div>
+        <div class="alert alert-danger" role="alert">
+          <i class="fas fa-times-circle"></i>
+          Không tìm thấy sự kiện có ID: ${eventId}
+        </div>
+      `;
+      return;
+    }
+
+    let event = null;
+    snapshot.forEach(doc => {
+      event = doc.data();
+    });
+
+    if (!event) {
+      detailEl.innerHTML = `
+        <div class="alert alert-danger" role="alert">
+          <i class="fas fa-times-circle"></i>
+          Không tìm thấy dữ liệu sự kiện.
+        </div>
+      `;
+      return;
+    }
+      
+    // Hiển thị chi tiết sự kiện
+    detailEl.innerHTML = `
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="card shadow-lg">
+            <img src="${event.event_img}" class="card-img-top" alt="${event.event_title}" style="height: 400px; object-fit: cover;">
+            <div class="card-body">
+              <h1 class="card-title text-center mb-3">${event.event_title}</h1>
+              <div class="text-center mb-4">
+                <span class="badge bg-danger fs-6">
+                  <i class="fas fa-calendar-alt"></i> ${event.event_date}
+                </span>
+              </div>
+              <div class="event-content">
+                <p class="lead text-justify" style="line-height: 1.8; text-align: justify;">
+                  ${event.event_content}
+                </p>
+              </div>
+              <hr>
+              <div class="d-flex justify-content-between align-items-center">
+                <button class="btn btn-outline-danger" onclick="addToFavorites({
+                  year: '${event.event_date}', 
+                  text: '${event.event_title}: ${event.event_content.substring(0, 100)}...'
+                })">
+                  <i class="fas fa-heart"></i> Thêm vào yêu thích
+                </button>
+                <button class="btn btn-outline-secondary" onclick="shareEvent('${event.event_title}', '${window.location.href}')">
+                  <i class="fas fa-share-alt"></i> Chia sẻ
+                </button>
               </div>
             </div>
           </div>
         </div>
-      `;
-    })
-    .catch((err) => {
-      console.error("Lỗi khi tải sự kiện:", err);
-      detailEl.innerHTML = `
-        <div class="alert alert-danger" role="alert">
-          <i class="fas fa-exclamation-circle"></i>
-          Lỗi khi tải chi tiết sự kiện. Vui lòng thử lại sau.
-        </div>
-      `;
-    });
+      </div>
+    `;
+    
+  } catch (error) {
+    console.error("Lỗi khi tải sự kiện từ Firebase:", error);
+    detailEl.innerHTML = `
+      <div class="alert alert-danger" role="alert">
+        <i class="fas fa-exclamation-circle"></i>
+        Lỗi khi tải chi tiết sự kiện. Vui lòng thử lại sau.
+        <br><small>Chi tiết: ${error.message}</small>
+      </div>
+    `;
+  }
 }
 
 // Hàm thêm vào yêu thích (sử dụng lại từ main.js)

@@ -1,9 +1,9 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Quản trị - Ngày Này Năm Ấy</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
       rel="stylesheet" />
@@ -13,40 +13,182 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Allura&family=Amatic+SC:wght@400;700&family=Baloo+Paaji+2:wght@400..800&family=Bungee&family=Dancing+Script:wght@400..700&family=Great+Vibes&family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&family=Paytone+One&family=Protest+Strike&family=Smooch&display=swap"
       rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/index.html">Ngày này năm ấy</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="./index.html">Trang chủ</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./bosuutap.html">Bộ sưu tập</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./dangnhap.html">Đăng nhập</a>
-            </li>
-          </ul>
+    <div class="page-wrapper">
+      <div class="content">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Ngày này năm ấy - Admin</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="./index.html">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./bosuutap.html">Bộ sưu tập</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link nav_login_btn" href="./dangnhap.html">Đăng nhập</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Admin Content -->
+        <div class="container mt-4">
+          <div class="row">
+            <div class="col-12">
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Quản lý sự kiện lịch sử</h2>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addEventModal">
+                  <i class="fas fa-plus"></i> Thêm sự kiện mới
+                </button>
+              </div>
+              
+              <!-- Events Table -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="mb-0">Danh sách sự kiện</h5>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                      <thead class="table-dark">
+                        <tr>
+                          <th>ID</th>
+                          <th>Tiêu đề</th>
+                          <th>Ngày</th>
+                          <th>Hình ảnh</th>
+                          <th>Hành động</th>
+                        </tr>
+                      </thead>
+                      <tbody id="events-table-body">
+                        <!-- Events will be loaded here -->
+                        <tr>
+                          <td colspan="5" class="text-center">
+                            <div class="spinner-border text-danger" role="status">
+                              <span class="visually-hidden">Đang tải...</span>
+                            </div>
+                            <p class="mt-2">Đang tải dữ liệu...</p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </nav>
 
-    <div class="container">
-      <h2 class="text-center mb-4">Quản lý bài đóng góp</h2>
+      <!-- Footer -->
+      <footer>
+        <p>&copy; 2025 Ngày này năm ấy. All rights reserved.</p>
+      </footer>
     </div>
 
-    <footer>
-      <p>&copy; 2025 Quá Khứ On Trend. All rights reserved.</p>
-    </footer>
+    <!-- Add Event Modal -->
+    <div class="modal fade" id="addEventModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Thêm sự kiện mới</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <form id="addEventForm">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="event-title" class="form-label">Tiêu đề sự kiện</label>
+                <input type="text" class="form-control" id="event-title" required>
+              </div>
+              <div class="mb-3">
+                <label for="event-date" class="form-label">Ngày sự kiện (dd/mm/yyyy)</label>
+                <input type="text" class="form-control" id="event-date" placeholder="07/05/1954" required>
+              </div>
+              <div class="mb-3">
+                <label for="event-image" class="form-label">URL hình ảnh</label>
+                <input type="url" class="form-control" id="event-image" required>
+              </div>
+              <div class="mb-3">
+                <label for="event-content" class="form-label">Nội dung sự kiện</label>
+                <textarea class="form-control" id="event-content" rows="5" required></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+              <button type="submit" class="btn btn-success">Thêm sự kiện</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Event Modal -->
+    <div class="modal fade" id="editEventModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Cập nhật sự kiện</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <form id="editEventForm">
+            <div class="modal-body">
+              <input type="hidden" id="edit-event-id">
+              <div class="mb-3">
+                <label for="edit-event-title" class="form-label">Tiêu đề sự kiện</label>
+                <input type="text" class="form-control" id="edit-event-title" required>
+              </div>
+              <div class="mb-3">
+                <label for="edit-event-date" class="form-label">Ngày sự kiện (dd/mm/yyyy)</label>
+                <input type="text" class="form-control" id="edit-event-date" required>
+              </div>
+              <div class="mb-3">
+                <label for="edit-event-image" class="form-label">URL hình ảnh</label>
+                <input type="url" class="form-control" id="edit-event-image" required>
+              </div>
+              <div class="mb-3">
+                <label for="edit-event-content" class="form-label">Nội dung sự kiện</label>
+                <textarea class="form-control" id="edit-event-content" rows="5" required></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+              <button type="submit" class="btn btn-primary">Cập nhật</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
+
+    <!-- Firebase Auth -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.13.1/firebase-auth-compat.min.js"
+      integrity="sha512-b2PGOE6ClpdFR5WZylPqJ9NEtHyGtdXKIe5wI0qRKVg3VeH9Km8CvihpnySwf6v21TV2cMTUp/BuglUiFLB38Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <script src="./js/firebase-config.js"></script>
+    <script src="./js/nav.js"></script>
+    <script src="./js/admin.js"></script>
   </body>
-</html> -->
+</html>
