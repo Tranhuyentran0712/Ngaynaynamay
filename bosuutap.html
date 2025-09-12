@@ -18,7 +18,9 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="page-wrapper">
+      <div class="content">
+        <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">Ngày này năm ấy</a>
         <button
@@ -48,10 +50,13 @@
     <div class="container mt-4 collection">
       <h2 class="text-center mb-4">Danh Sách Sự Kiện Yêu Thích</h2>
       <div class="row" id="favorite-events"></div>
+      </div>
+      </div>
+
+      <footer>
+        <p>&copy; 2025 Ngày này năm ấy. All rights reserved.</p>
+      </footer>
     </div>
-    <footer class="bst">
-      <p>&copy; 2025 Ngày này năm ấy. All rights reserved.</p>
-    </footer>
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>

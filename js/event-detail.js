@@ -1,43 +1,22 @@
-// async function loadEventDetail() {
-//   const params = new URLSearchParams(window.location.search);
-//   const eventId = params.get("id");
-
-//   const res = await fetch("data/event.json");
-//   const events = await res.json();
-
-//   const event = events.find((ev) => ev.id == eventId);
-//   if (!event) {
-//     document.getElementById("event-detail").innerHTML =
-//       "<p>Sự kiện không tồn tại.</p>";
-//     return;
-//   }
-
-//   document.getElementById("event-detail").innerHTML = `
-//     <div class="card shadow">
-//       <img src="${event.event_image}" class="card-img-top" alt="${
-//     event.event_title
-//   }">
-//       <div class="card-body">
-//         <h2 class="card-title">${event.event_title}</h2>
-//         <p class="text-muted"> ${new Date(
-//           event.event_date
-//         ).toLocaleDateString("vi-VN")}</p>
-//         <p class="card-text">${event.event_content}</p>
-//         <a href="index.html" class="btn btn-secondary mt-3">⬅ Quay lại</a>
-//       </div>
-//     </div>
-//   `;
-// }
-
-// document.addEventListener("DOMContentLoaded", loadEventDetail);
+// Event Detail Page - Hiển thị chi tiết sự kiện lịch sử Việt Nam
 
 document.addEventListener("DOMContentLoaded", () => {
+  loadEventDetail();
+});
+
+// Hàm load chi tiết sự kiện
+function loadEventDetail() {
   const params = new URLSearchParams(window.location.search);
   const eventId = params.get("id");
-  const detailEl = document.getElementById("event-detail");
+  const detailEl = document.getElementById("event-detail-content");
 
   if (!eventId) {
-    detailEl.innerText = "Thiếu ID sự kiện trong URL.";
+    detailEl.innerHTML = `
+      <div class="alert alert-warning" role="alert">
+        <i class="fas fa-exclamation-triangle"></i>
+        Không tìm thấy ID sự kiện trong URL.
+      </div>
+    `;
     return;
   }
 
@@ -47,22 +26,131 @@ document.addEventListener("DOMContentLoaded", () => {
       return res.json();
     })
     .then((events) => {
-      // chuyển id từ chuỗi sang number nếu cần
-      const evt = events.find((e) => e.id.toString() === eventId);
-      if (!evt) {
-        detailEl.innerText = "Không tìm thấy sự kiện.";
+      // Tìm sự kiện theo ID
+      const event = events.find((e) => e.id.toString() === eventId);
+      
+      if (!event) {
+        detailEl.innerHTML = `
+          <div class="alert alert-danger" role="alert">
+            <i class="fas fa-times-circle"></i>
+            Không tìm thấy sự kiện có ID: ${eventId}
+          </div>
+        `;
         return;
       }
-      // Render chi tiết
+      
+      // Hiển thị chi tiết sự kiện
       detailEl.innerHTML = `
-        <h1>${evt.title}</h1>
-        <img src="${evt.img}" alt="${evt.title}">
-        <p><strong>Ngày:</strong> ${evt.date}</p>
-        <p>${evt.description}</p>
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <div class="card shadow-lg">
+              <img src="${event.event_img}" class="card-img-top" alt="${event.event_title}" style="height: 400px; object-fit: cover; width: 100%;">
+              <div class="card-body">
+                <h1 class="card-title text-center mb-3">${event.event_title}</h1>
+                <div class="text-center mb-4">
+                  <span class="badge bg-danger fs-6">
+                    <i class="fas fa-calendar-alt"></i> ${event.event_date}
+                  </span>
+                </div>
+                <div class="event-content">
+                  <p class="lead text-justify" style="line-height: 1.8; text-align: justify;">
+                    ${event.event_content}
+                  </p>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                  <button class="btn btn-outline-danger" onclick="addToFavorites({
+                    year: '${event.event_date}', 
+                    text: '${event.event_title}: ${event.event_content.substring(0, 100)}...'
+                  })">
+                    <i class="fas fa-heart"></i> Thêm vào yêu thích
+                  </button>
+                  <button class="btn btn-outline-secondary" onclick="shareEvent('${event.event_title}', '${window.location.href}')">
+                    <i class="fas fa-share-alt"></i> Chia sẻ
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       `;
     })
     .catch((err) => {
-      console.error(err);
-      detailEl.innerText = "Lỗi khi tải chi tiết sự kiện.";
+      console.error("Lỗi khi tải sự kiện:", err);
+      detailEl.innerHTML = `
+        <div class="alert alert-danger" role="alert">
+          <i class="fas fa-exclamation-circle"></i>
+          Lỗi khi tải chi tiết sự kiện. Vui lòng thử lại sau.
+        </div>
+      `;
     });
-});
+}
+
+// Hàm thêm vào yêu thích (sử dụng lại từ main.js)
+function addToFavorites(eventData) {
+  const user = firebase.auth().currentUser;
+  if (!user) {
+    alert("Vui lòng đăng nhập để sử dụng chức năng này.");
+    return;
+  }
+
+  db.collection("favorites")
+    .add({
+      uid: user.uid,
+      year: eventData.year,
+      text: eventData.text,
+      addedAt: new Date(),
+    })
+    .then(() => {
+      alert("Đã thêm vào bộ sưu tập yêu thích!");
+    })
+    .catch((error) => {
+      console.error("Lỗi khi thêm vào yêu thích:", error);
+      alert("Lưu thất bại. Vui lòng thử lại.");
+    });
+}
+
+// Hàm chia sẻ sự kiện
+function shareEvent(title, url) {
+  if (navigator.share) {
+    navigator.share({
+      title: `Sự kiện lịch sử: ${title}`,
+      text: `Khám phá sự kiện lịch sử thú vị: ${title}`,
+      url: url
+    }).catch((error) => {
+      console.log('Lỗi khi chia sẻ:', error);
+      fallbackShare(title, url);
+    });
+  } else {
+    fallbackShare(title, url);
+  }
+}
+
+// Fallback share function
+function fallbackShare(title, url) {
+  const textToCopy = `Sự kiện lịch sử: ${title} - ${url}`;
+  
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      alert('Đã sao chép link sự kiện vào clipboard!');
+    }).catch(() => {
+      promptCopyText(textToCopy);
+    });
+  } else {
+    promptCopyText(textToCopy);
+  }
+}
+
+function promptCopyText(text) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+  try {
+    document.execCommand('copy');
+    alert('Đã sao chép link sự kiện!');
+  } catch (err) {
+    alert(`Link sự kiện: ${text}`);
+  }
+  document.body.removeChild(textarea);
+}

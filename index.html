@@ -16,7 +16,9 @@
     <link rel="stylesheet" 
  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="page-wrapper">
+      <div class="content">
+        <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">Ngày này năm ấy</a>
         <button
@@ -66,51 +68,64 @@
     <section class="events-section container text-center">
       <div id="eventResult" class="mt-4 text-start"></div>
       </div>
-      <h2 class="mb-4">Sự Kiện Nổi Bật</h2>
-      <div class="row">
-        <div class="col-md-4">
-           <div class="card">
-            <img
-              src="./img/16518946847629.jpeg"
-              class="card-img-top"
-              alt="điện biên phủ" />
-            <div class="card-body">
-              <h5 class="card-title">Chiến thắng Điện Biên Phủ</h5>
-              <p class="card-text">Thời gian: 07/05/1954</p>
+      <h2 class="mb-4" style="text-align: center;">Sự Kiện Nổi Bật</h2>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card">
+                  <img
+                    src="./img/16518946847629.jpeg"
+                    class="card-img-top"
+                    alt="điện biên phủ" />
+                  <div class="card-body">
+                    <h5 class="card-title">Chiến thắng Điện Biên Phủ</h5>
+                    <p class="card-text">Thời gian: 07/05/1954</p>
+                    <a href="events.html?id=1" class="btn btn-outline-danger btn-sm">
+                      <i class="fas fa-eye"></i> Xem thêm
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card">
+                  <img
+                    src="./img/photo-1714290103895-17142901040591609258739.webp"
+                    class="card-img-top"
+                    alt="Chiến dịch HCM" />
+                  <div class="card-body">
+                    <h5 class="card-title">Chiến dịch Hồ Chí Minh</h5>
+                    <p class="card-text">Thời gian: 30/04/1975</p>
+                    <a href="events.html?id=2" class="btn btn-outline-danger btn-sm">
+                      <i class="fas fa-eye"></i> Xem thêm
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card">
+                  <img
+                    src="./img/ttxvn_dien-bien-phu-tren-khong-1.jpg"
+                    class="card-img-top"
+                    alt="điện biên phủ trên không" />
+                  <div class="card-body">
+                    <h5 class="card-title">Điện Biên Phủ trên không</h5>
+                    <p class="card-text">Thời gian: 18/12/1972</p>
+                    <a href="events.html?id=3" class="btn btn-outline-danger btn-sm">
+                      <i class="fas fa-eye"></i> Xem thêm
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <img
-              src="./img/photo-1714290103895-17142901040591609258739.webp"
-              class="card-img-top"
-              alt="Chiến dịch HCM" />
-            <div class="card-body">
-              <h5 class="card-title">Chiến dịch Hồ Chí Minh</h5>
-              <p class="card-text">Thời gian: 30/04/1975</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <img
-              src="./img/ttxvn_dien-bien-phu-tren-khong-1.jpg"
-              class="card-img-top"
-              alt="điện biên phủ trên không" />
-            <div class="card-body">
-              <h5 class="card-title">Điện Biên Phủ trên không</h5>
-              <p class="card-text">Thời gian: 18/12/1972</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
-    <!-- Footer -->
-    <footer>
+      <!-- Footer -->
+      <footer>
       <p>&copy; 2025 Ngày này năm ấy. All rights reserved.</p>
-    </footer>
+      </footer>
+    </div>
 
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>

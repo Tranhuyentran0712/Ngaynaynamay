@@ -24,11 +24,13 @@ document.getElementById("register-form").addEventListener("submit", (event) => {
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
+      // Chỉ lưu thông tin cần thiết, không lưu password vào Firestore
       let userData = {
+        uid: userCredential.user.uid, // Lưu UID để liên kết với Firebase Auth
         username,
         email,
-        password,
         role: role,
+        createdAt: new Date()
       };
 
       db.collection("users")

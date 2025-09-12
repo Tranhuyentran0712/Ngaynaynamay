@@ -21,7 +21,9 @@
       referrerpolicy="no-referrer" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="page-wrapper">
+      <div class="content">
+        <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">Ngày này năm ấy</a>
         <button
@@ -46,7 +48,72 @@
             </li>
           </ul>
         </div>
+        </div>
+        </nav>
+
+        <!-- User content goes here -->
+        <div class="container mt-4">
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body text-center">
+                  <i class="fas fa-user-circle fa-5x text-danger mb-3"></i>
+                  <h3>Thông tin tài khoản</h3>
+                  <div id="user-info">
+                    <p>Loading...</p>
+                  </div>
+                  <button class="btn btn-outline-danger" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </nav>
+
+      <!-- Footer -->
+      <footer>
+        <p>&copy; 2025 Ngày này năm ấy. All rights reserved.</p>
+      </footer>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
+
+    <!-- Firebase Auth -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.13.1/firebase-auth-compat.min.js"
+      integrity="sha512-b2PGOE6ClpdFR5WZylPqJ9NEtHyGtdXKIe5wI0qRKVg3VeH9Km8CvihpnySwf6v21TV2cMTUp/BuglUiFLB38Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <script src="./js/firebase-config.js"></script>
+    <script src="./js/nav.js"></script>
+    <script>
+      // User page functionality
+      firebase.auth().onAuthStateChanged((user) => {
+        const userInfo = document.getElementById('user-info');
+        if (user) {
+          userInfo.innerHTML = `
+            <p><strong>Email:</strong> ${user.email}</p>
+            <p><strong>UID:</strong> ${user.uid}</p>
+            <p><strong>Tình trạng:</strong> <span class="badge bg-success">Đã xác thực</span></p>
+          `;
+        } else {
+          window.location.href = 'dangnhap.html';
+        }
+      });
+
+      function logout() {
+        firebase.auth().signOut().then(() => {
+          alert('Đăng xuất thành công!');
+          window.location.href = 'index.html';
+        }).catch((error) => {
+          alert('Lỗi khi đăng xuất: ' + error.message);
+        });
+      }
+    </script>
   </body>
 </html>
